@@ -1,0 +1,20 @@
+apiVersion: certmanager.k8s.io/v1alpha2
+kind: Certificate
+metadata:
+  name: rocketmedia-cz-tls
+spec:
+  secretName: rocketmedia-cz
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: rocketmedia.cz
+  dnsNames:
+    - rocketmedia.cz
+    - www.rocketmedia.cz
+  acme:
+    config:
+      - http01:
+          ingressClass: nginx
+        domains:
+          - rocketmedia.cz
+          - www.rocketmedia.cz
